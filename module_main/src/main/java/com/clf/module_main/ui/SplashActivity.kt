@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import com.clf.module_main.R
+import com.clf.module_main.ui.main2.Main2Activity
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 
@@ -20,7 +21,8 @@ class SplashActivity : AppCompatActivity() {
                 .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
                 .init()
 
-        GuideActivity.start(this);
+//        GuideActivity.start(this);
+        Main2Activity.start(this);
         finish()
 
     }

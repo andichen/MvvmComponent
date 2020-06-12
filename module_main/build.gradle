@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 
@@ -36,7 +39,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-
     //依赖
     api rootProject.ext.dependencies["immersionbar"]
 //    api rootProject.ext.androidx["androidx.cardview"]
@@ -47,5 +49,7 @@ dependencies {
 
     //依赖库
     implementation project(':library_common')
+    implementation project(':library_base')
+    implementation project(':library_network')
 
 }

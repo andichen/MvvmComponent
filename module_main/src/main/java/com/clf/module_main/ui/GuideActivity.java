@@ -1,6 +1,5 @@
 package com.clf.module_main.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,23 +19,19 @@ import android.widget.Toast;
 
 import com.clf.module_main.R;
 import com.clf.module_main.bean.CustomBean;
+import com.clf.module_main.ui.main2.Main2Activity;
 import com.clf.module_main.viewholder.CustomPageViewHolder;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.adapter.OnPageChangeListenerAdapter;
-import com.zhpan.bannerview.constants.PageStyle;
 import com.zhpan.bannerview.holder.HolderCreator;
-import com.zhpan.bannerview.holder.ViewHolder;
 import com.zhpan.bannerview.utils.BannerUtils;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 //import kotlin.jvm.internal.Intrinsics;
 
@@ -118,7 +113,14 @@ public class GuideActivity extends BaseDataActivity implements HolderCreator {
                             btn_start.setVisibility(View.GONE);
                         }
                     }
-                })).setHolderCreator((HolderCreator) this).create(this.getData());
+                }))
+                .setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
+                    @Override
+                    public void onPageClick(int position) {
+                        startActivity(new Intent(GuideActivity.this, Main2Activity.class));
+                    }
+                })
+                .setHolderCreator((HolderCreator) this).create(this.getData());
     }
 
     private final void updateUI(int position) {

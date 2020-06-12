@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/library_base" />
             <option value="$PROJECT_DIR$/library_common" />
+            <option value="$PROJECT_DIR$/library_network" />
             <option value="$PROJECT_DIR$/module_main" />
           </set>
         </option>

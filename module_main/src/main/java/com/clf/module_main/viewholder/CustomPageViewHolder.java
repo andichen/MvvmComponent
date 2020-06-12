@@ -38,14 +38,14 @@ public class CustomPageViewHolder implements ViewHolder<CustomBean> {
         alphaAnimator.setDuration(1300);
         alphaAnimator.start();
 
-        mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnSubViewClickListener != null) {
-                    mOnSubViewClickListener.onViewClick(mImageView,position);
-                }
-            }
-        });
+//        mImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mOnSubViewClickListener != null) {
+//                    mOnSubViewClickListener.onViewClick(mImageView,position);
+//                }
+//            }
+//        });
     }
 
     public void setOnSubViewClickListener(OnSubViewClickListener subViewClickListener) {

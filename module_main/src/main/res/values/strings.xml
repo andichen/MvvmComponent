@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">module_main</string>
+
+    <!-- 菜单 start -->
+    <string name="mainpage">首页</string>
+    <string name="jinyingfenxi">社区</string>
+    <string name="yewuyunying">通知</string>
+    <string name="shijiejiankong">监控分析</string>
+    <string name="shichangfenxi">我的</string>
+    <!-- 菜单 end-->
 </resources>

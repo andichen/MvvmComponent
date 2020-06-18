@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"  >
+    <item
+        android:id= "@+id/item_main"
+        android:title="@string/mainpage"
+        android:icon="@drawable/bottom_mainpage_selector"/>
+    <item
+        android:id= "@+id/item_jyfx"
+        android:title="@string/jinyingfenxi"
+        android:icon="@drawable/bottom_yewu_selector"/>
+    <item
+        android:id= "@+id/item_ywyy"
+        android:title="@string/yewuyunying"
+        android:icon="@drawable/bottom_woldcup_selector"/>
+    <item
+        android:id= "@+id/item_scfx"
+        android:title="@string/shichangfenxi"
+        android:icon="@drawable/bottom_my_selector"/>
+</menu>

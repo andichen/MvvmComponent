@@ -3,10 +3,11 @@
     package="com.clf.module_main">
 
     <application>
-        <activity android:name=".ui.main2.Main2Activity"></activity>
+        <activity android:name=".ui.main3.Main3Activity"></activity>
+        <activity android:name=".ui.main2.Main2Activity" />
         <activity android:name=".ui.GuideActivity" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.kotlin.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Start">
             <intent-filter>

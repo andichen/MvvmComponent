@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import com.clf.module_main.R
+import com.clf.module_main.ui.GuideActivity
 import com.clf.module_main.ui.main3.Main3Activity
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
@@ -21,21 +22,31 @@ class SplashActivity : AppCompatActivity() {
                 .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
                 .init()
 
-//        GuideActivity.start(this);
+        GuideActivity.start(this);
 //        Main2Activity.start(this);
-        Main3Activity.start(this);
-        finish()
+//        Main3Activity.start(this);
+//        finish()
 
         Gretter().gree("ccc")
 
+        fun sum(a: Int, b: Int) = a + b
+
+        val sum = sum(10, 3)
+        printSum(1, 1)
+
 
     }
-
+//    fun sum(a: Int, b: Int): Int {
+//        return a + b
+//    }
     class Gretter() {
         fun gree(nam: String) {
 
             print(nam)
         }
+    }
+    fun printSum(a: Int, b: Int): Unit {
+        print(a + b)
     }
 
 

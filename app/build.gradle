@@ -36,6 +36,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(':library_base')
-    implementation project(':module_main')
+    implementation project(':library_common')
+//    implementation project(':module_main')
+    if (!isModule.toBoolean()) {
+        implementation project(':module_main')
+    }
 
 }

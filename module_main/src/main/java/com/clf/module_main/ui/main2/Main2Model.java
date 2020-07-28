@@ -16,6 +16,9 @@ import java.nio.channels.NetworkChannel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Main2Model<T> extends BaseModel<T>  {
     @Override
@@ -31,6 +34,7 @@ public class Main2Model<T> extends BaseModel<T>  {
 
             @Override
             public void onError(int code, String msg) {
+                loadFail(msg);
 
             }
         }, BaseApplication.getInstance()));
@@ -38,7 +42,7 @@ public class Main2Model<T> extends BaseModel<T>  {
 
 
 
-        //方案一    okhttp,retrofit,observer .没封装
+        //todo 方案一    okhttp,retrofit,observer .没封装
 //        NetWorkManager.getInstance(); //这个可以在MyAllpication中初始化
 //
 //        //没封装的请求
@@ -58,7 +62,7 @@ public class Main2Model<T> extends BaseModel<T>  {
 //                });
 
 
-        // 方案二    单独的okhttp
+        //todo 方案二    单独的okhttp
 
         //第一步获取okHttpClient对象
 //        OkHttpClient client = new OkHttpClient.Builder()
@@ -86,7 +90,7 @@ public class Main2Model<T> extends BaseModel<T>  {
 //        });
 
 
-        //方案三      okhttp，retrofit 结合起来
+        //todo 方案三      okhttp，retrofit 结合起来
 //        NetWorkManager.getInstance();
 //        NetWorkManager.getRequest().getLiveByParam2().enqueue(new Callback<AllRecBean>() {
 //            @Override
@@ -99,6 +103,8 @@ public class Main2Model<T> extends BaseModel<T>  {
 //
 //            }
 //        });
+
+
 
 
     }

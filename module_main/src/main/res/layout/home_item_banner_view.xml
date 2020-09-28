@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <com.zhpan.bannerview.BannerViewPager
+        android:id="@+id/bv_top"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_margin="10dp"
+        app:bvp_indicator_checked_color="@android:color/holo_red_dark"
+        app:bvp_indicator_normal_color="@android:color/darker_gray"
+        app:bvp_page_margin="10dp"
+        app:bvp_reveal_width="20dp" />
+</LinearLayout>

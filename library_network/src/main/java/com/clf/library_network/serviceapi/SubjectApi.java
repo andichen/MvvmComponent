@@ -1,7 +1,6 @@
 package com.clf.library_network.serviceapi;
 
 
-
 import com.clf.library_network.netbean.AllRecBean;
 import com.clf.library_network.service.BaseApi;
 import com.clf.library_network.service.HttpMethod;
@@ -41,7 +40,14 @@ public class SubjectApi extends BaseApi {
 
     }
 
+    public void getMoreLiveList(Observer<AllRecBean> subscriber, String nextPageUrl) {
 
+        Observable observable = apiService.getMoreLiveByParam(nextPageUrl);
+//                .map(new HttpResultFunc<AllRecBean>()); //这里可以再次解析出来
+
+        toSubscribe(observable, subscriber);
+
+    }
 
 
 }

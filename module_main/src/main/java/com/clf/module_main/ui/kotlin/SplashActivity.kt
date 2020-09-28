@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 
 import com.clf.module_main.R
+import com.clf.module_main.ui.BottomActivity
 import com.clf.module_main.ui.GuideActivity
 import com.clf.module_main.ui.main3.Main3Activity
 import com.gyf.immersionbar.BarHide
@@ -22,10 +23,13 @@ class SplashActivity : AppCompatActivity() {
                 .hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
                 .init()
 
-        GuideActivity.start(this);
+//        GuideActivity.start(this);
 //        Main2Activity.start(this);
-//        Main3Activity.start(this);
+        Main3Activity.start(this);
+
+//        BottomActivity.start(this);
 //        finish()
+
 
         Gretter().gree("ccc")
 

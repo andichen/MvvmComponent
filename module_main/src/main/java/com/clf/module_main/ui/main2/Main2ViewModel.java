@@ -24,11 +24,11 @@ public class Main2ViewModel extends MvmBaseViewModel<IMain2View,Main2Model> impl
     @Override
     public void onLoadFinish(BaseModel model, Object data) {
 
-        AllRecBean allRecBean = (AllRecBean) data;
-        Log.i("chen", allRecBean.getNextPageUrl());
-        if (getPageView() != null) {
-            getPageView().onDataLoadFinish((AllRecBean) data);
-        }
+//        AllRecBean allRecBean = (AllRecBean) data;
+//        Log.i("chen", allRecBean.getNextPageUrl());
+//        if (getPageView() != null) {
+//            getPageView().onDataLoadFinish((AllRecBean) data);
+//        }
 
 
     }

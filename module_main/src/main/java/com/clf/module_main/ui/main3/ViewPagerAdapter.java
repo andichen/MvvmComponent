@@ -1,6 +1,7 @@
 package com.clf.module_main.ui.main3;
 
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -15,24 +16,41 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-
-    public ViewPagerAdapter(FragmentManager manager) {
-        super(manager);
+    public ViewPagerAdapter(@NonNull FragmentManager fm, List<Fragment> fragments) {
+        super(fm);
+        this.fragments = fragments;
     }
 
+    private List<Fragment> fragments;
+
+    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+        super(fm, behavior);
+    }
+
+
+    @NonNull
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+        if (fragments != null && fragments.size() > 0) {
+            return fragments.get(position);
+        }
+        return null;
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        if (fragments != null && fragments.size() > 0) {
+            return fragments.size();
+        }
+        return 0;
     }
 
-    public void addFragment(Fragment fragment) {
-        mFragmentList.add(fragment);
+    public void setData(List<Fragment> data) {
+        if (fragments == null) {
+            fragments = new ArrayList<>();
+        }
+        fragments.addAll(data);
+        notifyDataSetChanged();
     }
 
 }

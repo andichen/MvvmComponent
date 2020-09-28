@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
  * @since 2020-02-26
  */
 public class CustomNoTouchViewPager extends ViewPager {
+    private boolean noScroll = true;  //默认不滑动
     public CustomNoTouchViewPager(@NonNull Context context) {
         super(context);
     }
@@ -26,13 +27,30 @@ public class CustomNoTouchViewPager extends ViewPager {
         super(context, attrs);
     }
 
+    public void setNoScroll(boolean noScroll) {
+        this.noScroll = noScroll;
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return false;
+        /* return false;//super.onTouchEvent(arg0); */
+        if (noScroll)
+            return false;
+        else
+            return super.onTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return false;
+        if (noScroll)
+            return false;
+        else
+            return super.onInterceptTouchEvent(ev);
     }
+
+    @Override
+    public void setCurrentItem(int item) {
+        super.setCurrentItem(item);
+    }
+
 }

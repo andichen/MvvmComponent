@@ -1,9 +1,11 @@
 package com.clf.module_main.viewholder;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.clf.module_main.R;
 import com.clf.module_main.bean.CustomBean;
 import com.zhpan.bannerview.holder.ViewHolder;
@@ -23,6 +25,13 @@ import java.util.List;
 public class CustomPageViewHolder implements ViewHolder<CustomBean> {
     private OnSubViewClickListener mOnSubViewClickListener;
 
+    private Context context;
+
+    public CustomPageViewHolder(Context context) {
+        this.context = context;
+
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.main_item_custom_view;
@@ -32,11 +41,17 @@ public class CustomPageViewHolder implements ViewHolder<CustomBean> {
     @Override
     public void onBind(View itemView, CustomBean data, final int position, int size) {
         final ImageView mImageView = itemView.findViewById(R.id.banner_image);
+        if (context != null) {
+            Glide.with(context).load(data.getImgUrl()).into(mImageView);
 
-        mImageView.setImageResource(data.getImageRes());
-        ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mImageView, "alpha", 0, 1);
-        alphaAnimator.setDuration(1300);
-        alphaAnimator.start();
+        } else {
+
+            mImageView.setImageResource(data.getImageRes());
+            ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mImageView, "alpha", 0, 1);
+            alphaAnimator.setDuration(1300);
+            alphaAnimator.start();
+        }
+
 
 //        mImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override

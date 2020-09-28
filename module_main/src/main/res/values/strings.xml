@@ -7,5 +7,9 @@
     <string name="yewuyunying">通知</string>
     <string name="shijiejiankong">监控分析</string>
     <string name="shichangfenxi">我的</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
     <!-- 菜单 end-->
 </resources>

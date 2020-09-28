@@ -25,19 +25,19 @@ public class Main2Model<T> extends BaseModel<T>  {
     protected void load() {
 
         //封装网络请求
-        SubjectApi.getInstance().getLiveList(new HttpSubscriber<AllRecBean>(new SubscriberOnListener<AllRecBean>() {
-            @Override
-            public void onSucceed(AllRecBean data) {
-                loadSuccess((T) data);
-
-            }
-
-            @Override
-            public void onError(int code, String msg) {
-                loadFail(msg);
-
-            }
-        }, BaseApplication.getInstance()));
+//        SubjectApi.getInstance().getLiveList(new HttpSubscriber<Object>(new SubscriberOnListener<Object>() {
+//            @Override
+//            public void onSucceed(Object data) {
+//                loadSuccess((T) data);
+//
+//            }
+//
+//            @Override
+//            public void onError(int code, String msg) {
+//                loadFail(msg);
+//
+//            }
+//        }, BaseApplication.getInstance()));
 
 
 

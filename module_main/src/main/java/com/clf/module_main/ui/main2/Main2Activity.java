@@ -61,7 +61,7 @@ public class Main2Activity extends MvvmBaseActivity<ActivityMain2Binding,Main2Vi
 
     @Override
     public void onDataLoadFinish(AllRecBean allRecBean) {
-        viewDataBinding.text.setText(allRecBean.getNextPageUrl());
+//        viewDataBinding.text.setText(allRecBean.getNextPageUrl());
 
 
 

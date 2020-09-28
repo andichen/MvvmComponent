@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.clf.module_main.R;
 import com.clf.module_main.bean.CustomBean;
 import com.clf.module_main.ui.main2.Main2Activity;
+import com.clf.module_main.ui.main3.Main3Activity;
 import com.clf.module_main.viewholder.CustomPageViewHolder;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
@@ -117,7 +118,7 @@ public class GuideActivity extends BaseDataActivity implements HolderCreator {
                 .setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
                     @Override
                     public void onPageClick(int position) {
-                        startActivity(new Intent(GuideActivity.this, Main2Activity.class));
+                        startActivity(new Intent(GuideActivity.this, Main3Activity.class));
                     }
                 })
                 .setHolderCreator((HolderCreator) this).create(this.getData());
@@ -140,7 +141,7 @@ public class GuideActivity extends BaseDataActivity implements HolderCreator {
 
     @NotNull
     public CustomPageViewHolder createViewHolder() {
-        CustomPageViewHolder customPageViewHolder = new CustomPageViewHolder();
+        CustomPageViewHolder customPageViewHolder = new CustomPageViewHolder(null);
         customPageViewHolder.setOnSubViewClickListener((new CustomPageViewHolder.OnSubViewClickListener() {
             @SuppressLint("WrongConstant")
             public final void onViewClick(View $noName_0, int position) {

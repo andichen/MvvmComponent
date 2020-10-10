@@ -9,15 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.clf.library_common.router.RouterFragmentPath;
 import com.clf.library_common.utils.ColorUtils;
 import com.clf.module_main.R;
 import com.clf.module_main.ui.fragment.DemoFragment;
-import com.clf.module_main.ui.fragment.DemoFragment2;
 import com.clf.module_main.ui.fragment.HomeFragment;
 import com.clf.module_main.views.CustomNoTouchViewPager;
 import com.gyf.immersionbar.ImmersionBar;

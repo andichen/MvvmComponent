@@ -1,10 +1,11 @@
 package com.clf.module_main.ui.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.view.View;
-import android.widget.Toast;
 
+import android.os.Handler;
+import android.os.Looper;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,12 +32,14 @@ import com.clf.module_main.adapter.NominateAdapter;
 import com.clf.module_main.bean.CustomBean;
 import com.clf.module_main.ui.GuideActivity;
 import com.clf.module_main.viewholder.CustomPageViewHolder;
+import com.clf.module_main.views.footer.ClassicsFooter;
+import com.clf.module_main.views.header.ClassicsHeader;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.kingja.loadsir.core.LoadSir;
-import com.scwang.smart.refresh.footer.ClassicsFooter;
-import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.zhpan.bannerview.holder.HolderCreator;
 import com.zhpan.bannerview.holder.ViewHolder;
 
@@ -45,12 +48,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /*
  * 推荐
@@ -63,6 +74,7 @@ public class NominateFragment extends BaseFragment {
     private NominateAdapter adapter;
     private List<BaseCustomViewModel> viewModelList = new ArrayList<>();
     private String nextPageUrl;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     protected int getLayoutId() {
@@ -89,34 +101,69 @@ public class NominateFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             initData();
         });
+
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);   // 防止没数据，依然可以加载更多
+        refreshLayout.setEnableAutoLoadMore(false);   // 必须手动上拉才加载
+
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            //封装网络请求
-            SubjectApi.getInstance().getMoreLiveList(new HttpSubscriber<AllRecBean>(new SubscriberOnListener<AllRecBean>() {
+            System.out.println("ccccccccc" + nextPageUrl);
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder().url(nextPageUrl).build();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
                 @Override
-                public void onSucceed(AllRecBean data) {
-                    onSuccess(data);
+                public void onFailure(Call call, IOException e) {
+                    String s = e.toString();
+                    refreshLayout.finishLoadMore(false);
+
                 }
 
                 @Override
-                public void onError(int code, String msg) {
+                public void onResponse(Call call, Response response) throws IOException {
+                    String string = response.body().string();
+                    Gson gson = new Gson();
+                    AllRecBean allRecBean = gson.fromJson(string, AllRecBean.class);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshLayout.finishLoadMore(true);
+                            onSuccess(allRecBean);
+                        }
+                    });
 
-                    String s = msg;
+
                 }
-            }, BaseApplication.getInstance()),nextPageUrl);
+            });
+
+//            SubjectApi.getInstance().getMoreLiveList(new HttpSubscriber<AllRecBean>(new SubscriberOnListener<AllRecBean>() {
+//                @Override
+//                public void onSucceed(AllRecBean data) {
+//                    refreshLayout.finishLoadMore(true);
+//                    onSuccess(data);
+//                }
+//
+//                @Override
+//                public void onError(int code, String msg) {
+//
+//                    String s = msg;
+//                    refreshLayout.finishLoadMore(false);
+//
+//                }
+//            }, BaseApplication.getInstance()), "http://baobab.kaiyanapp.com/api/v5/index/tab/allRec?page=1&isTag=true&adIndex=5");
         });
 
-
-
     }
-
 
     @Override
     protected void initData() {
 
-        //封装网络请求
+
+//        封装网络请求
         SubjectApi.getInstance().getLiveList(new HttpSubscriber<AllRecBean>(new SubscriberOnListener<AllRecBean>() {
             @Override
             public void onSucceed(AllRecBean data) {
+
+
                 refreshLayout.finishRefresh(true);
                 viewModelList.clear();
                 onSuccess(data);
@@ -125,15 +172,15 @@ public class NominateFragment extends BaseFragment {
 
             @Override
             public void onError(int code, String msg) {
-
+                refreshLayout.finishRefresh(false);
                 String s = msg;
             }
         }, BaseApplication.getInstance()));
 
-
     }
 
     private void onSuccess(AllRecBean data) {
+
         Gson gson = new Gson();
         nextPageUrl = data.getNextPageUrl();
         String json = new Gson().toJson(data.getItemList());
@@ -254,8 +301,6 @@ public class NominateFragment extends BaseFragment {
         followCardViewModel.videoId = cardBean.getData().getContent().getData().getId();
         viewModelList.add(followCardViewModel);
     }
-
-
 
 }
 

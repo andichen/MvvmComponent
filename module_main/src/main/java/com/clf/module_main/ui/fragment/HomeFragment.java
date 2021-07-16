@@ -2,6 +2,7 @@ package com.clf.module_main.ui.fragment;
 
 
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -25,12 +26,20 @@ public class HomeFragment extends BaseFragment {
     private HomeFragmentPageAdapter pageAdapter;
     ArticleTabPagerAdapter adapter;
     private TabLayout tablayout;
+    private ImageView iv_net_candle;
 
     @Override
     protected void initData() {
 
         tablayout = findView(R.id.tab_layout);
         viewpager = findView(R.id.vp_home_content);
+        iv_net_candle = findView(R.id.iv_net_candle);
+        iv_net_candle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         List<String> strings = Arrays.asList("发现", "推荐", "日报");
         List<Fragment> fragments = new ArrayList<>();

@@ -21,6 +21,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.collections.IntIterator;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
@@ -61,7 +62,7 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     private void initView() {
-        String a = "我是不是有点过了，让你不舒服";
+        String a = "";
         mNavigationController = bottomView.material()
                 .addItem(R.drawable.main_home,
                         "首页",

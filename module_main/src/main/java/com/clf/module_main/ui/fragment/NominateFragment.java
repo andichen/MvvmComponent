@@ -3,6 +3,7 @@ package com.clf.module_main.ui.fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
@@ -33,6 +34,7 @@ import com.clf.module_main.bean.CustomBean;
 import com.clf.module_main.ui.GuideActivity;
 import com.clf.module_main.viewholder.CustomPageViewHolder;
 import com.clf.module_main.views.footer.ClassicsFooter;
+import com.clf.module_main.views.header.BezierRadarHeader;
 import com.clf.module_main.views.header.ClassicsHeader;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -95,13 +97,14 @@ public class NominateFragment extends BaseFragment {
 //        adapter.addHeaderView(getHeaderView());
         recyclerView.setAdapter(adapter);
         refreshLayout
-                .setRefreshHeader(new ClassicsHeader(getContext()));
+                .setRefreshHeader(new BezierRadarHeader(getContext()));
         refreshLayout
                 .setRefreshFooter(new ClassicsFooter(getContext()));
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             initData();
         });
 
+        String a="";
         refreshLayout.setEnableLoadMoreWhenContentNotFull(false);   // 防止没数据，依然可以加载更多
         refreshLayout.setEnableAutoLoadMore(false);   // 必须手动上拉才加载
 
@@ -167,6 +170,8 @@ public class NominateFragment extends BaseFragment {
                 refreshLayout.finishRefresh(true);
                 viewModelList.clear();
                 onSuccess(data);
+
+                Toast.makeText(getContext(),"刷新成功",Toast.LENGTH_SHORT).show();
 
             }
 
